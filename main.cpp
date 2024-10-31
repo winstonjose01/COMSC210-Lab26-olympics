@@ -1,7 +1,6 @@
 // COMSC210 | Lab 26| Winston Jose
 // IDE UsedL Visual Studio Code
-// Github link: https://github.com/winstonjose01/COMSC210-lab-25-races 
-
+// Github link: https://github.com/winstonjose01/COMSC210-Lab26-olympics 
 #include <iostream>
 #include <fstream>
 #include <chrono>
