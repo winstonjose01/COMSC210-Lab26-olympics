@@ -1,4 +1,4 @@
-// COMSC210 | Lab 25| Winston Jose
+// COMSC210 | Lab 26| Winston Jose
 // IDE UsedL Visual Studio Code
 // Github link: https://github.com/winstonjose01/COMSC210-lab-25-races 
 
@@ -30,7 +30,7 @@ int main() {
     int numline = 0;
     int num_simulation = 0;
     ifstream fin("codes.txt");
-    double arr1 [4][4][2] = {0};                           
+    double arr1 [4][4][2] = {0};                        // 3D Array, second cube holds the subtotal for each iteration
     if (!fin.is_open()){                                // Check if the file opened successfully
         cout << "Error opening file. Aborting!";            
         return(1);    
@@ -50,14 +50,14 @@ int main() {
     reading(fin, random_vector);                        // Call reading() template function
     auto end1 = high_resolution_clock::now();           // End timing for vector reading
     arr1[0][0][0] = elapsed(start1, end1);             // Calculate the duration in milliseconds
-    arr1[0][0][1] = arr1[0][0][1] + arr1[0][0][0];
+    arr1[0][0][1] += arr1[0][0][0];
     // List
     auto start2 = high_resolution_clock::now();         // Start timing for list reading
     list<string> random_list;                           // Create list to store lines from the file
     reading(fin, random_list);                          // Call reading() template function
     auto end2 = high_resolution_clock::now();           // End timing for list reading
     arr1[0][1][0]  = elapsed(start2, end2);             // Calculate the duration in milliseconds
-    arr1[0][1][1] = arr1[0][1][1] + arr1[0][1][0];
+    arr1[0][1][1] += arr1[0][1][0];
 
 
     // Set
@@ -66,7 +66,7 @@ int main() {
     reading(fin,random_set);                            // Call reading() template function
     auto end3 = high_resolution_clock::now();           // End timing for set reading
     arr1[0][2][0]  = elapsed(start3, end3);             // Calculate the duration in milliseconds
-    arr1[0][2][1] = arr1[0][2][1] + arr1[0][2][0];
+    arr1[0][2][1] += arr1[0][2][0];
 
 
     // ------------------------ SORTING -------------------------------
@@ -75,14 +75,14 @@ int main() {
     sorting (random_vector);                            // Call sorting() template function
     auto end4 = high_resolution_clock::now();           // End timing for vector sorting
     arr1[1][0][0]  = elapsed(start4, end4);
-    arr1[1][0][1] = arr1[1][0][1] + arr1[1][0][0];
+    arr1[1][0][1] += arr1[1][0][0];
 
     // List
     auto start5 = high_resolution_clock::now();         // Start timing for list sorting
     sorting (random_list);                              // Call sorting() template function
     auto end5 = high_resolution_clock::now();           // End timing for list sorting
     arr1[1][1][0]  = elapsed(start5, end5);             // Calculate the duration in milliseconds
-    arr1[1][1][1] = arr1[1][1][1] + arr1[1][1][0];
+    arr1[1][1][1] += arr1[1][1][0];
     
     // Set - Sorting set automatically happens when the elements are read into the set.
 
@@ -92,19 +92,19 @@ int main() {
     inserting(random_vector,numline);                   // Call inserting() template function
     auto end7 = high_resolution_clock::now();           // End timing for vector insertion
     arr1[2][0][0] = elapsed(start7, end7);             // Calculate the duration in milliseconds
-    arr1[2][0][1] = arr1[2][0][1] + arr1[2][0][0];
+    arr1[2][0][1] += arr1[2][0][0];
     // List
     auto start8 = high_resolution_clock::now();         // Start timing for list insertion
     inserting(random_list, numline);                    // Call inserting() template function
     auto end8 = high_resolution_clock::now();           // End timing for list insertion
     arr1[2][1][0] =  elapsed(start8, end8);             // Calculate the duration in milliseconds
-    arr1[2][1][1] = arr1[2][1][1] + arr1[2][1][0];
+    arr1[2][1][1] += arr1[2][1][0];
     // Vector    
     auto start9 = high_resolution_clock::now();         // Start timing for set insertion
     inserting(random_set, numline);                     // Call inserting() template function
     auto end9 = high_resolution_clock::now();           // End timing for set insertion
     arr1[2][2][0] = elapsed(start9, end9);             // Calculate the duration in milliseconds
-    arr1[2][2][1] = arr1[2][2][1] + arr1[2][2][0];
+    arr1[2][2][1] += arr1[2][2][0];
 
     // ------------------------ DELETING -------------------------------
 
@@ -112,24 +112,27 @@ int main() {
     deleting(random_vector,numline);                    // Call deleting() template function
     auto end10 = high_resolution_clock::now();          // End timing for vector deletion
     arr1[3][0][0] = elapsed(start10, end10);          // Calculate the duration in milliseconds
-    arr1[3][0][1] = arr1[3][0][1] + arr1[3][0][0];
+    arr1[3][0][1] += arr1[3][0][0];
 
     auto start11 = high_resolution_clock::now();        // Start timing for list deletion       
     deleting(random_list, numline);                     // Call deleting() template function
     auto end11 = high_resolution_clock::now();          // End timing for list deletion
     arr1[3][1][0] = elapsed(start11, end11);          // Calculate the duration in milliseconds
-    arr1[3][1][1] = arr1[3][1][1] + arr1[3][1][0];
+    arr1[3][1][1] += arr1[3][1][0];
 
     auto start12 = high_resolution_clock::now();        // Start timing for set deletion    
     deleting(random_set,numline);                       // Call deleting() template function
     auto end12 = high_resolution_clock::now();          // End timing for set deletion
     arr1[3][2][0] = elapsed(start12 ,end12);          // Calculate the duration in milliseconds
-    arr1[3][2][1] = arr1[3][2][1] + arr1[3][2][0];
+    arr1[3][2][1] += arr1[3][2][0];
 
     cout << i;
     num_simulation = i;
+    random_vector.clear();
+    random_list.clear();
+    random_set.clear();
     }
-    cout << "\nNumber of simulation: " << num_simulation << "\n";
+    cout << "\nNumber of simulations: " << num_simulation << "\n";
 
     // Output the timing on the table
     cout << fixed << setprecision(3);
