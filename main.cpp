@@ -126,13 +126,14 @@ int main() {
     arr1[3][2][0] = elapsed(start12 ,end12);          // Calculate the duration in milliseconds
     arr1[3][2][1] += arr1[3][2][0];
 
-    cout << i;
+    //cout << i;
     num_simulation = i;
-    random_vector.clear();
+    // Clear each containers for the next iteration
+    random_vector.clear();                              
     random_list.clear();
     random_set.clear();
     }
-    cout << "\nNumber of simulations: " << num_simulation << "\n";
+    cout << "\nNumber of simulations: " << num_simulation << "\n";   // Prints number of simulations
 
     // Output the timing on the table
     cout << fixed << setprecision(3);
